@@ -1,0 +1,31 @@
+{
+  "name": "phore/letsencrypt",
+  "description": "Letsencrypt wrapper and secure cert storage",
+  "license": "MIT",
+  "homepage": "https://infracamp.org/phore",
+  "authors": [
+    { "name": "Matthias Leuffen", "email": "m@tth.es" }
+  ],
+  "repositories": [
+  ],
+  "require": {
+    "php": ">=7.1",
+    "phore/core": "*",
+    "phore/micro-app": "dev-master",
+    "phore/filesystem": "dev-master",
+    "phore/system": "dev-master"
+  },
+  "suggest": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Phore\\Letsencrypt\\": "src/"
+    },
+    "files": [
+    ]
+  },
+  "minimum-stability": "dev",
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  }
+}
