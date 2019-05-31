@@ -31,7 +31,9 @@ class PhoreLetsencryptModule implements AppModule
         $app->router->onGet("/.well-known/acme-challenge/:key", function(string $key) {
 
 
+            $le = new PhoreLetsencrypt(phore_dir("/tmp/le"))
 
+            return true;
         });
     }
 }

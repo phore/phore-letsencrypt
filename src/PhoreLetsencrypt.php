@@ -36,19 +36,25 @@ class PhoreLetsencrypt
         }
         $domainParams = implode(" ", $domainParams);
 
-        phore_exec(
-            "certbot certonly -n --agree-tos -m :email --logs-dir :path --config-dir :path --test-cert --dry-run --work-dir :path --webroot -w :webroot $domainParams",
-            [
-                "email" => $this->tosEMail,
-                "path" => $tmppath->getUri(),
-                "webroot" => $this->webroot->getUri()
-            ]
-        );
-
-
-
+        try {
+            phore_exec(
+                "certbot certonly -n --agree-tos -m :email --logs-dir :path --config-dir :path --test-cert --dry-run --work-dir :path --webroot -w :webroot $domainParams",
+                [
+                    "email" => $this->tosEMail,
+                    "path" => $tmppath->getUri(),
+                    "webroot" => $this->webroot->getUri()
+                ]
+            );
+        } catch (\Exception $e) {
+            phore_exec("rm -R :path", ["path" => $tmppath->getUri()]);
+            throw $e;
+        }
     }
 
+    public function getChallengeByKey(string $key) : string
+    {
+        return $this->webroot->withSubPath(".well-known/acme-challenge")->withFileName($key)->get_contents();
+    }
 
 
 
