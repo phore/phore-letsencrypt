@@ -45,7 +45,7 @@ class PhoreLetsencrypt
     }
 
 
-    public function acquireCert (array $domains, array &$errors=[])
+    public function acquireCert (array $domains, array &$errors=[]) : PhoreLetsencryptCert
     {
         $tmppath = phore_dir("/tmp/certbot_" . uniqid());
         $tmppath->mkdir(0700);
@@ -54,6 +54,7 @@ class PhoreLetsencrypt
 
         $domainParams = [];
         $firstDomain = null;
+        $crtDomains = [];
         foreach ($domains as $domain) {
             if ( ! $this->_isHostnameConnected($domain)) {
                 $errors[] = ["domain"=>$domain, "error"=>"not connected."];
@@ -62,6 +63,7 @@ class PhoreLetsencrypt
             if ($firstDomain === null)
                 $firstDomain = $domain;
             $domainParams[] = "-d " . escapeshellarg($domain);
+            $crtDomains[] = $domain;
         }
         if ($firstDomain === null) {
             $errors[] = ["domain" => null, "error" => "no connected domain (Requesting certs for: " . implode(", ", $domains) . ")"];
@@ -83,6 +85,21 @@ class PhoreLetsencrypt
             );
             $proc->setTimeout(60);
             $proc->wait();
+
+            $crtPath = $this->webroot->withSubPath("live")->withSubPath($firstDomain);
+            $crtPath->assertDirectory();
+
+            $cert = new PhoreLetsencryptCert();
+            $cert->domains = $crtDomains;
+            $cert->issued_at = time();
+            $cert->cert = $crtPath->withFileName("cert.pem")->get_contents();
+            $cert->chain = $crtPath->withFileName("chain.pem")->get_contents();
+            $cert->fullchain = $crtPath->withFileName("fullchain.pem")->get_contents();
+            $cert->privkey = $crtPath->withFileName("privkey.pem")->get_contents();
+
+            phore_exec("rm -Rf :path", ["path" => $tmppath->getUri()]);
+            return $cert;
+
         } catch (\Exception $e) {
             phore_exec("rm -Rf :path", ["path" => $tmppath->getUri()]);
             throw $e;
