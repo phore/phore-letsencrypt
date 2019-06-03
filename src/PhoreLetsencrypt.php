@@ -81,7 +81,7 @@ class PhoreLetsencrypt
                     "webroot" => $this->webroot->getUri()
                 ]
             );
-            $proc->setTimeout(15);
+            $proc->setTimeout(60);
             $proc->wait();
         } catch (\Exception $e) {
             phore_exec("rm -Rf :path", ["path" => $tmppath->getUri()]);

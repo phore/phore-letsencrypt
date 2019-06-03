@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phore/phore-core.git",
-                "reference": "0240ba81fd43e10ba2a4309a153640c96b88e59d"
+                "reference": "a46fc77691f10aa739208c5e7297052418388e76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phore/phore-core/zipball/0240ba81fd43e10ba2a4309a153640c96b88e59d",
-                "reference": "0240ba81fd43e10ba2a4309a153640c96b88e59d",
+                "url": "https://api.github.com/repos/phore/phore-core/zipball/a46fc77691f10aa739208c5e7297052418388e76",
+                "reference": "a46fc77691f10aa739208c5e7297052418388e76",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
             ],
             "description": "Phore core library",
             "homepage": "https://infracamp.org/phore/",
-            "time": "2019-05-31T11:43:36+00:00"
+            "time": "2019-06-03T09:03:08+00:00"
         },
         {
             "name": "phore/di-base",
@@ -265,12 +265,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phore/phore-system.git",
-                "reference": "564f41ea790d4fb564d65f1533a4aeb9f05dabf0"
+                "reference": "1c9dfee76830b3303b4f0ac4e4634ed36bf45c63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phore/phore-system/zipball/564f41ea790d4fb564d65f1533a4aeb9f05dabf0",
-                "reference": "564f41ea790d4fb564d65f1533a4aeb9f05dabf0",
+                "url": "https://api.github.com/repos/phore/phore-system/zipball/1c9dfee76830b3303b4f0ac4e4634ed36bf45c63",
+                "reference": "1c9dfee76830b3303b4f0ac4e4634ed36bf45c63",
                 "shasum": ""
             },
             "require": {
@@ -300,7 +300,7 @@
                 }
             ],
             "description": "Execute shell commands",
-            "time": "2019-04-10T17:15:17+00:00"
+            "time": "2019-06-03T09:04:15+00:00"
         },
         {
             "name": "psr/container",
