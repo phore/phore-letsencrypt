@@ -86,7 +86,7 @@ class PhoreLetsencrypt
             $proc->setTimeout(60);
             $proc->wait();
 
-            $crtPath = $this->webroot->withSubPath("live")->withSubPath($firstDomain);
+            $crtPath = $tmppath->withSubPath("live")->withSubPath($firstDomain);
             $crtPath->assertDirectory();
 
             $cert = new PhoreLetsencryptCert();
