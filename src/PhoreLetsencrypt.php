@@ -74,7 +74,7 @@ class PhoreLetsencrypt
 
 
             $proc = new PhoreProc(
-                "certbot certonly -n --agree-tos -m :email --logs-dir :path --config-dir :path --test-cert --dry-run --work-dir :path --webroot -w :webroot $domainParams",
+                "certbot certonly -n --agree-tos -m :email --logs-dir :path --config-dir :path --work-dir :path --webroot -w :webroot $domainParams",
                 [
                     "email" => $this->tosEMail,
                     "path" => $tmppath->getUri(),
