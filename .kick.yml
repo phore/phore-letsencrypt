@@ -5,7 +5,7 @@ apache_fallback_resource: "/index.php"
 
 command:
   build:
-    - "sudo apt-get update && sudo apt-get install -y letsencrypt
+    - "sudo apt-get update && sudo apt-get install -y letsencrypt"
     - "composer update"
 
   test:

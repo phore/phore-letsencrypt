@@ -28,11 +28,14 @@ class PhoreLetsencryptModule implements AppModule
      */
     public function register(App $app)
     {
+        $app->router->onGet("/.well-known/acme-challenge/rudl-host", function() {
+            return ["hostname" => gethostname(), "rudl-endpoint" => "manager"];
+        });
+
         $app->router->onGet("/.well-known/acme-challenge/:key", function(string $key) {
 
-
-            $le = new PhoreLetsencrypt(phore_dir("/tmp/le"))
-
+            $le = new PhoreLetsencrypt();
+            echo $le->getChallengeByKey($key);
             return true;
         });
     }

@@ -11,6 +11,7 @@ namespace App;
 use Phore\Letsencrypt\PhoreLetsencryptModule;
 use Phore\MicroApp\App;
 use Phore\MicroApp\Handler\JsonExceptionHandler;
+use Phore\MicroApp\Handler\JsonResponseHandler;
 use PHPUnit\Util\Json;
 
 require __DIR__ . "/../vendor/autoload.php";
@@ -18,6 +19,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $app = new App();
 $app->setOnExceptionHandler(new JsonExceptionHandler());
+$app->setResponseHandler(new JsonResponseHandler());
 
 $app->acl->addRule(aclRule("*")->ALLOW());
 

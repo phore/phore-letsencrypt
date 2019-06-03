@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "62da73e7f650eeed71e73a0616fd195e",
+    "content-hash": "df2c9670fb6e1395a9b36b04100a32c4",
     "packages": [
         {
             "name": "phore/core",
@@ -153,6 +153,62 @@
             ],
             "description": "Acces files layer",
             "time": "2019-05-31T12:14:05+00:00"
+        },
+        {
+            "name": "phore/http-client",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phore/phore-http-client.git",
+                "reference": "86e5f1c3c945a4ae5836afb15192e471aa11bfce"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phore/phore-http-client/zipball/86e5f1c3c945a4ae5836afb15192e471aa11bfce",
+                "reference": "86e5f1c3c945a4ae5836afb15192e471aa11bfce",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-http": "*",
+                "ext-json": "*",
+                "phore/core": "dev-master",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phore/cache": "*",
+                "phore/objectstore": "*",
+                "phpunit/phpunit": "*"
+            },
+            "suggest": {
+                "phore/cache": "Use request caching"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Phore\\HttpClient\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Leuffen",
+                    "email": "m@tth.es"
+                }
+            ],
+            "description": "Http client library for fast api access",
+            "homepage": "https://infracamp.org/phore/",
+            "keywords": [
+                "Keyword1",
+                "Keyword2"
+            ],
+            "time": "2019-05-24T20:41:44+00:00"
         },
         {
             "name": "phore/micro-app",
@@ -1873,7 +1929,8 @@
     "stability-flags": {
         "phore/micro-app": 20,
         "phore/filesystem": 20,
-        "phore/system": 20
+        "phore/system": 20,
+        "phore/http-client": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
