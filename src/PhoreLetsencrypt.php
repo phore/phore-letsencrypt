@@ -67,7 +67,7 @@ class PhoreLetsencrypt
         }
         if ($firstDomain === null) {
             $errors[] = ["domain" => null, "error" => "no connected domain (Requesting certs for: " . implode(", ", $domains) . ")"];
-            return false;
+            throw new \InvalidArgumentException("No domain is mapped to this service: " . implode(", ", $domains));
         }
 
         $domainParams = implode(" ", $domainParams);
