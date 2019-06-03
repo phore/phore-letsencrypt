@@ -14,7 +14,7 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $le = new PhoreLetsencrypt("matthes@leuffen.de");
 
-$cert = $le->acquireCert(["mix1.leuffen.de", "test-le-cert-endpoint.leuffen.de"]);
+$cert = $le->acquireCert(["data1.insecure.versenkt.de", "data2.insecure.versenkt.de"]);
 
-phore_dir(__DIR__ . "/../demo_cert")->withFileName("test1.demo-org.tld")->set_json((array)$cert);
+phore_dir(__DIR__ . "/../demo_cert")->withFileName("data1.insecure.versenkt.de.json")->set_json((array)$cert);
 
