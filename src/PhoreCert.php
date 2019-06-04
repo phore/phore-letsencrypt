@@ -9,18 +9,9 @@
 namespace Phore\Letsencrypt;
 
 
-class PhoreLetsencryptCert
+class PhoreCert extends PhoreCertMeta
 {
 
-    public function load(array $input)
-    {
-        foreach ($this as $key => $val) {
-            $this->$key = phore_pluck($key, $input);
-        }
-    }
-
-    public $domains = [];
-    public $issued_at;
     public $cert;
     public $chain;
     public $fullchain;
@@ -38,10 +29,12 @@ class PhoreLetsencryptCert
         return true;
     }
 
-    public $cert_serialNumber;
-    public $cert_hash;
-    public $cert_validFrom;
-    public $cert_validTo;
+
+    public function getPemFullcain() : string
+    {
+        return $this->fullchain . "\n" . $this->privkey;
+    }
+
 
 
 

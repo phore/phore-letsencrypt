@@ -45,7 +45,21 @@ class PhoreLetsencrypt
     }
 
 
-    public function acquireCert (array $domains, array &$errors=[]) : PhoreLetsencryptCert
+    public function getConnectedDomains(array $domains) : array
+    {
+        $connectedDomains = [];
+        foreach ($domains as $domain) {
+            $domain = strtolower($domain);
+            if (!$this->_isHostnameConnected($domain)) {
+                continue;
+            }
+            $connectedDomains[] = $domain;
+        }
+        return $connectedDomains;
+    }
+
+
+    public function acquireCert (array $domains, array &$errors=[]) : PhoreCert
     {
         $tmppath = phore_dir("/tmp/certbot_" . uniqid());
         $tmppath->mkdir(0700);
@@ -54,16 +68,12 @@ class PhoreLetsencrypt
 
         $domainParams = [];
         $firstDomain = null;
-        $crtDomains = [];
-        foreach ($domains as $domain) {
-            if ( ! $this->_isHostnameConnected($domain)) {
-                $errors[] = ["domain"=>$domain, "error"=>"not connected."];
-                continue;
-            }
+        $connectedDomains = $this->getConnectedDomains($domains);
+
+        foreach ($connectedDomains as $domain) {
             if ($firstDomain === null)
                 $firstDomain = $domain;
             $domainParams[] = "-d " . escapeshellarg($domain);
-            $crtDomains[] = $domain;
         }
         if ($firstDomain === null) {
             $errors[] = ["domain" => null, "error" => "no connected domain (Requesting certs for: " . implode(", ", $domains) . ")"];
@@ -89,8 +99,8 @@ class PhoreLetsencrypt
             $crtPath = $tmppath->withSubPath("live")->withSubPath($firstDomain);
             $crtPath->assertDirectory();
 
-            $cert = new PhoreLetsencryptCert();
-            $cert->domains = $crtDomains;
+            $cert = new PhoreCert();
+            $cert->domains = $connectedDomains;
             $cert->issued_at = time();
             $cert->cert = $crtPath->withFileName("cert.pem")->get_contents();
             $cert->chain = $crtPath->withFileName("chain.pem")->get_contents();

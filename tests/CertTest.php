@@ -9,7 +9,7 @@
 namespace Tests;
 
 
-use Phore\Letsencrypt\PhoreLetsencryptCert;
+use Phore\Letsencrypt\PhoreCert;
 use PHPUnit\Framework\TestCase;
 
 class CertTest extends TestCase
@@ -18,7 +18,7 @@ class CertTest extends TestCase
 
     public function testGetCertData()
     {
-        $cert = new PhoreLetsencryptCert();
+        $cert = new PhoreCert();
         $cert->load(phore_file(__DIR__ . "/../demo_cert/data1.insecure.optools.net.json")->get_json());
         $cert->parse();
 

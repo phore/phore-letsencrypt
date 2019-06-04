@@ -14,7 +14,17 @@ require __DIR__ . "/../vendor/autoload.php";
 
 $le = new PhoreLetsencrypt("matthes@leuffen.de");
 
-$cert = $le->acquireCert(["data1.insecure.optools.net", "data2.insecure.optools.net"]);
+$secureStore = new PhoreSecureCertStore("SECRET_KEY");
 
-phore_dir(__DIR__ . "/../demo_cert")->withFileName("data1.insecure.optools.net.json")->set_json((array)$cert);
+$secureStore->acquireCertIfNeeded("cert1", ["data1.insecure.optools.net", "data2.insecure.optools.net"], $le);
+
+phore_out("Errors");
+print_r ($secureStore->getErrors());
+
+phore_out("Metadata");
+print_r ($secureStore->getCertMeta("cert1"));
+
+phore_out("Cert");
+echo $secureStore->getCertPem("cert1");
+
 
