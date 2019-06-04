@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phore/phore-core.git",
-                "reference": "a46fc77691f10aa739208c5e7297052418388e76"
+                "reference": "fc4d4c1d16e6e4a863c807339c08c4ca37b60222"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phore/phore-core/zipball/a46fc77691f10aa739208c5e7297052418388e76",
-                "reference": "a46fc77691f10aa739208c5e7297052418388e76",
+                "url": "https://api.github.com/repos/phore/phore-core/zipball/fc4d4c1d16e6e4a863c807339c08c4ca37b60222",
+                "reference": "fc4d4c1d16e6e4a863c807339c08c4ca37b60222",
                 "shasum": ""
             },
             "require": {
@@ -55,7 +55,7 @@
             ],
             "description": "Phore core library",
             "homepage": "https://infracamp.org/phore/",
-            "time": "2019-06-03T09:03:08+00:00"
+            "time": "2019-06-04T19:52:24+00:00"
         },
         {
             "name": "phore/di-base",
