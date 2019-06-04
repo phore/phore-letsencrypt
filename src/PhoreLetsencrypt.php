@@ -83,7 +83,7 @@ class PhoreLetsencrypt
                     "webroot" => $this->webroot->getUri()
                 ]
             );
-            $proc->setTimeout(60);
+            $proc->setTimeout(120);
             $proc->wait();
 
             $crtPath = $tmppath->withSubPath("live")->withSubPath($firstDomain);

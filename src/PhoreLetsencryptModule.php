@@ -33,7 +33,6 @@ class PhoreLetsencryptModule implements AppModule
         });
 
         $app->router->onGet("/.well-known/acme-challenge/:key", function(string $key) {
-
             $le = new PhoreLetsencrypt("default@infracamp.org");
             echo $le->getChallengeByKey($key);
             return true;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df2c9670fb6e1395a9b36b04100a32c4",
+    "content-hash": "cc46dd5602217a9fd3f39042801049a7",
     "packages": [
         {
             "name": "phore/core",
@@ -830,12 +830,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "d720d14ef701c38cc7d50be1843a34d744e919f6"
+                "reference": "1efa47062cc142ee3bf5b2b84e1abc3f4b25e318"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/d720d14ef701c38cc7d50be1843a34d744e919f6",
-                "reference": "d720d14ef701c38cc7d50be1843a34d744e919f6",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/1efa47062cc142ee3bf5b2b84e1abc3f4b25e318",
+                "reference": "1efa47062cc142ee3bf5b2b84e1abc3f4b25e318",
                 "shasum": ""
             },
             "require": {
@@ -885,7 +885,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-05-29T11:51:37+00:00"
+            "time": "2019-06-03T11:17:03+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1935,7 +1935,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.1"
+        "php": ">=7.1",
+        "ext-openssl": "*"
     },
     "platform-dev": []
 }

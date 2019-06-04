@@ -10,6 +10,7 @@
   ],
   "require": {
     "php": ">=7.1",
+    "ext-openssl": "*",
     "phore/core": "*",
     "phore/micro-app": "dev-master",
     "phore/filesystem": "dev-master",
