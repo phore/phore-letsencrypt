@@ -9,6 +9,8 @@
 namespace Phore\Letsencrypt;
 
 
+use Phore\Core\Helper\PhoreSecretBoxSync;
+
 class PhoreSecureCertStore
 {
     const INDEX_FILE = "cert.index.json";
