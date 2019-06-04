@@ -32,7 +32,9 @@ class PhoreLetsencryptModule implements AppModule
             return ["hostname" => gethostname(), "rudl-endpoint" => "manager"];
         });
 
-        $app->router->onGet("/.well-known/acme-challenge/:key", function(string $key) {
+        $app->router->onGet("/.well-known/acme-challenge/:key", function(string $key=null) {
+            if ($key === null)
+                throw new \InvalidArgumentException("No callenge selected.");
             $le = new PhoreLetsencrypt("default@infracamp.org");
             echo $le->getChallengeByKey($key);
             return true;
