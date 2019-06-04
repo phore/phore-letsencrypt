@@ -39,7 +39,7 @@ class PhoreSecureCertStore
 
     public function __construct(string $encryptSecret, string $rootDir = "/mnt/ssl")
     {
-        $this->path = phore_dir($rootDir);
+        $this->path = phore_dir($rootDir)->assertDirectory(true);
         $this->secretBox = new PhoreSecretBoxSync($encryptSecret);
         if ( ! $this->path->withFileName(self::INDEX_FILE)->isFile())
             $this->path->withFileName(self::INDEX_FILE)->asFile()->set_json(["__errors__" => []]);
