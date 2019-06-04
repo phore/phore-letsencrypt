@@ -61,6 +61,7 @@ class PhoreSecureCertStore
             "cert_serialNumber" => $cert->cert_serialNumber,
             "cert_hash" => $cert->cert_hash
         ];
+        $this->indexData = $data;
         $this->path->withFileName($name, "enc")->set_contents($this->secretBox->encrypt($cert->getPemFullcain()));
         $this->indexFile->set_json($data);
     }
