@@ -15,7 +15,7 @@ class PhoreSecureCertStore
 {
     const INDEX_FILE = "cert.index.json";
 
-    const RENEW_CERT_GRACE_TIME = 60 * 15;          // 15 minutes Change the cert after this time if new Domains appeared
+    const RENEW_CERT_GRACE_TIME = 60 * 5;          // 15 minutes Change the cert after this time if new Domains appeared
     const RENEW_CERT_BEFORE_EXPIRES = 28 * 86400;   // 28 Days before expires
     const RENEW_CERT_ERROR_RECOVERY_TIME = 60 * 15; // 15 minutes after failure
     /**
@@ -136,6 +136,7 @@ class PhoreSecureCertStore
     public function acquireCertIfNeeded(string $name, array $domains, PhoreLetsencrypt $letsencrypt)
     {
         if (phore_pluck(["__errors__", $name, "time"], $this->indexData, 0) > time() - self::RENEW_CERT_ERROR_RECOVERY_TIME) {
+            phore_out("No issue: in error recovery time.");
             return false;
         }
 
@@ -144,14 +145,17 @@ class PhoreSecureCertStore
         if ($meta instanceof PhoreCertMeta) {
             $mustReissue = false;
             if ($meta->issued_at > time() - self::RENEW_CERT_GRACE_TIME) {
+                phore_out("No issue: Issued at smaller renew grace time");
                 return false;
             }
 
-            if ( ! $this->_hasConnectableDomains($meta, $domains, $letsencrypt)) {
+            if ($this->_hasConnectableDomains($meta, $domains, $letsencrypt)) {
+                phore_out("Reissue: Has new connectalbe Domains");
                 $mustReissue = true;
             }
 
-            if ( $meta->cert_validTo < time() - self::RENEW_CERT_GRACE_TIME) {
+            if ( $meta->cert_validTo < time() + self::RENEW_CERT_BEFORE_EXPIRES) {
+                phore_out("Reissue: Domain expire in <28 days");
                 $mustReissue = true;
             }
 
