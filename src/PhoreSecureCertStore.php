@@ -17,7 +17,7 @@ class PhoreSecureCertStore
 
     const RENEW_CERT_GRACE_TIME = 60 * 5;          // 15 minutes Change the cert after this time if new Domains appeared
     const RENEW_CERT_BEFORE_EXPIRES = 28 * 86400;   // 28 Days before expires
-    const RENEW_CERT_ERROR_RECOVERY_TIME = 60 * 15; // 15 minutes after failure
+    const RENEW_CERT_ERROR_RECOVERY_TIME = 60 * 5; // 15 minutes after failure
     /**
      * @var \Phore\FileSystem\PhoreDirectory
      */
@@ -136,7 +136,7 @@ class PhoreSecureCertStore
     public function acquireCertIfNeeded(string $name, array $domains, PhoreLetsencrypt $letsencrypt)
     {
         if (phore_pluck(["__errors__", $name, "time"], $this->indexData, 0) > time() - self::RENEW_CERT_ERROR_RECOVERY_TIME) {
-            phore_out("No issue: in error recovery time.");
+            phore_out("No issue: in error recovery time. (5min after failure)");
             return false;
         }
 
